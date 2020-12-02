@@ -1,14 +1,16 @@
-import {Router} from 'express';
+import { Router } from 'express';
+import ClassesController from './controllers/ClassesController';
+import ConnectionsController from './controllers/ConnectionsController';
 
 const routes = Router();
+const classesController = new ClassesController();
+const connectionsController = new ConnectionsController();
 
-routes.post('/classes', (req,res) => {
+routes.post('/classes', classesController.create)
+routes.get('/classes', classesController.index)
 
-  const data = req.body
-
-  res.send({response: true})
-
-})
+routes.post('/connections', connectionsController.create);
+routes.get('/connections', connectionsController.index);
 
 
 export default routes;
